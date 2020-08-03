@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 import com.example.demo.DemoApplicationTests;
+import com.example.demo.model.entity.Item;
 import com.example.demo.model.entity.User;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -33,11 +34,15 @@ public class UserRepositoryTest extends DemoApplicationTests {
     }
 
     @Test
-    public void read(@RequestParam Long id){
-        Optional<User> user = userRepository.findById(2L); //TODO: 아이디를 받아오기
+    @Transactional
+    public void read(){
+        Optional<User> user = userRepository.findByAccount("TestUser01");
+
         user.ifPresent(selectUser->{
-            System.out.println("user : " + selectUser);
-            System.out.println("email: " + selectUser.getEmail());
+            selectUser.getOrderDetailList().stream().forEach(detail->{
+                Item item = detail.getItem();
+                System.out.println(item);
+            });
         });
     }
 
