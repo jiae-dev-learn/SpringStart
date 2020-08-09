@@ -19,7 +19,6 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String status;
-    private LocalDateTime orderAt;
     private LocalDateTime arrivalDate;
     private Integer quantity;
     private BigDecimal totalPrice;
@@ -28,6 +27,8 @@ public class OrderDetail {
     private LocalDateTime updatedAt;
     private String updatedBy;
 
+    private Long itemId;
+    private Long orderGroupId;
 
 //    // N:1 orderDetail의 입장에서 생각했을 때 user는 N:1임.
 //    @ManyToOne

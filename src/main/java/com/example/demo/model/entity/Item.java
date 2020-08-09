@@ -28,7 +28,7 @@ public class Item {
     private String createdBy;
     private LocalDateTime updatedAt;
     private String updatedBy;
-
+    private Long partnerId;
 
 //    // item : orderDetail / 1:N
 //    // FetchType: LAZY = 지연 로딩 / EAGER = 즉시 로딩
