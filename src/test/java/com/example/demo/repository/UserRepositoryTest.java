@@ -22,28 +22,42 @@ public class UserRepositoryTest extends DemoApplicationTests {
 
     @Test
     public void create(){
+        String account = "Test01";
+        String password = "Test01";
+        String status = "REGISTERED";
+        String email = "Test01@gmail.com";
+        String phoneNumber = "010-1111-2222";
+        LocalDateTime registeredAt = LocalDateTime.now();
+        LocalDateTime createdAt = LocalDateTime.now();
+        String createdBy = "AdminServer";
+
         User user = new User();
-//        user.setId(); //id값은 AutoIn
-        user.setAccount("TestUser01");
-        user.setEmail("TestUser01@gmail.com");
-        user.setPhoneNumber("010-1111-1111");
-        user.setCreatedAt(LocalDateTime.now());
-        user.setCreatedBy("admin");
-        User newUser = userRepository.save(user); // 레포지토리에도 id도 추가해서 자동으로 생성됨.
-        System.out.println("newUser : " + newUser);
+        user.setAccount(account);
+        user.setPassword(password);
+        user.setStatus(status);
+        user.setEmail(email);
+        user.setPhoneNumber(phoneNumber);
+        user.setRegisteredAt(registeredAt);
+        user.setCreatedBy(createdBy);
+        user.setCreatedAt(createdAt);
+
+        User newUser = userRepository.save(user);
+        Assert.assertNotNull(newUser);
     }
 
     @Test
     @Transactional
     public void read(){
-        Optional<User> user = userRepository.findByAccount("TestUser01");
-
-        user.ifPresent(selectUser->{
-            selectUser.getOrderDetailList().stream().forEach(detail->{
-                Item item = detail.getItem();
-                System.out.println(item);
-            });
-        });
+        User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1111-2222");
+        Assert.assertNotNull(user);
+//        Optional<User> user = userRepository.findByAccount("TestUser01");
+//
+//        user.ifPresent(selectUser->{
+//            selectUser.getOrderDetailList().stream().forEach(detail->{
+//                Item item = detail.getItem();
+//                System.out.println(item);
+//            });
+//        });
     }
 
     @Test
@@ -62,10 +76,10 @@ public class UserRepositoryTest extends DemoApplicationTests {
     @Transactional // 데이터를 지우지 않고 테스트 후 롤백해줌
     public void delete(){
         Optional<User> user = userRepository.findById(10L); //TODO: 아이디를 받아오기
-
+        
         Assert.assertTrue(user.isPresent()); // true
 
-        user.ifPresent(selectUser->{
+        user.ifPresent(selectUser-> {
             userRepository.delete(selectUser);
         });
 
