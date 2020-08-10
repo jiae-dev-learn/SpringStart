@@ -3,6 +3,7 @@ package com.example.demo.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,6 +13,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = {"orderDetailList", "partner"})
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +30,15 @@ public class Item {
     private String createdBy;
     private LocalDateTime updatedAt;
     private String updatedBy;
-    private Long partnerId;
 
+//    private Long partnerId;
+    // Item N : 1  Partner
+    @ManyToOne
+    private Partner partner;
+
+    //Item 1:N orderDetail
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+    private List<OrderDetail> orderDetailList;
 //    // item : orderDetail / 1:N
 //    // FetchType: LAZY = 지연 로딩 / EAGER = 즉시 로딩
 //    // LAZY는 orderDetailList 변수에 대해 get메소드를 호출하지 않는 이상 연관관계가 설정된 테이블에 대해 select하지 않겠다

@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 //@ToString(exclude = {"user", "item"})
+@ToString(exclude = {"orderGroup", "item"})
 public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,8 +28,15 @@ public class OrderDetail {
     private LocalDateTime updatedAt;
     private String updatedBy;
 
-    private Long itemId;
-    private Long orderGroupId;
+    //    private Long itemId;
+    // OrderDetail N : 1 Item (각 아이템마다 여러 주문건이 있을 수 있음)
+    @ManyToOne
+    private Item item;
+
+    //    private Long orderGroupId;
+    // OrderDetail N : 1 OrderGroup
+    @ManyToOne
+    private OrderGroup orderGroup;
 
 //    // N:1 orderDetail의 입장에서 생각했을 때 user는 N:1임.
 //    @ManyToOne
@@ -36,4 +44,5 @@ public class OrderDetail {
 //
 //    @ManyToOne
 //    private Item item;
+
 }
