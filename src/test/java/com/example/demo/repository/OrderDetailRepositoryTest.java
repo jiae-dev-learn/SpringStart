@@ -28,8 +28,8 @@ public class OrderDetailRepositoryTest extends DemoApplicationTests {
         //어떤 삼품? created 된 상품이 필요함.
 //        orderDetail.setItemId(1L);
 
-        orderDetail.setCreatedAt(LocalDateTime.now());
-        orderDetail.setCreatedBy("AdminServer");
+//        orderDetail.setCreatedAt(LocalDateTime.now());
+//        orderDetail.setCreatedBy("AdminServer");
 
         OrderDetail newOrderDetail = orderDetailRepository.save(orderDetail);
         Assert.assertNotNull(newOrderDetail);

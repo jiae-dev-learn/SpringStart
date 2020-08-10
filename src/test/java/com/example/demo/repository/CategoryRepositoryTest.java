@@ -19,14 +19,14 @@ public class CategoryRepositoryTest extends DemoApplicationTests {
     public void create(){
         String type = "COMPUTER";
         String title = "컴퓨터";
-        LocalDateTime createdAt = LocalDateTime.now();
-        String createdBy = "AdminServer";
+//        LocalDateTime createdAt = LocalDateTime.now();
+//        String createdBy = "AdminServer";
 
         Category category = new Category();
         category.setTitle(title);
         category.setType(type);
-        category.setCreatedAt(createdAt);
-        category.setCreatedBy(createdBy);
+//        category.setCreatedAt(createdAt);
+//        category.setCreatedBy(createdBy);
 
         Category newCategory = categoryRepository.save(category);
         Assert.assertNotNull(newCategory);

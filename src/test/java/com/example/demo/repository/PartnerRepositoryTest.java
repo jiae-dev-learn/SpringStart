@@ -23,8 +23,8 @@ public class PartnerRepositoryTest extends DemoApplicationTests {
         String businessNumber = "123456789123";
         String ceoName = "홍길동";
         LocalDateTime registeredAt = LocalDateTime.now();
-        LocalDateTime createdAt = LocalDateTime.now();
-        String createdBy = "AdminServer";
+//        LocalDateTime createdAt = LocalDateTime.now();
+//        String createdBy = "AdminServer";
         Long categoryId = 1L;
 
         Partner partner = new Partner();
@@ -36,8 +36,8 @@ public class PartnerRepositoryTest extends DemoApplicationTests {
         partner.setBusinessNumber(businessNumber);
         partner.setCeoName(ceoName);
         partner.setRegisteredAt(registeredAt);
-        partner.setCreatedAt(createdAt);
-        partner.setCreatedBy(createdBy);
+//        partner.setCreatedAt(createdAt);
+//        partner.setCreatedBy(createdBy);
 //        partner.setCategoryId(categoryId);
 
         Partner newPartner = partnerRepository.save(partner);

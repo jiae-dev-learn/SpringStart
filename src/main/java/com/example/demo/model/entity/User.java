@@ -5,6 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.apache.tomcat.jni.Local;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,6 +20,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @ToString(exclude = {"orderGroupList"})
+@EntityListeners(AuditingEntityListener.class)
 //@Table(name = "user") //table의 이름과 동일하므로 선언하지 않아도 됨.
 public class User {
     @Id
@@ -27,9 +33,13 @@ public class User {
     private String phoneNumber;
     private LocalDateTime registeredAt;
     private LocalDateTime unregisteredAt;
+    @CreatedDate
     private LocalDateTime createdAt;
+    @CreatedBy
     private String createdBy;
+    @LastModifiedDate
     private LocalDateTime updatedAt;
+    @LastModifiedBy
     private String updatedBy;
 //
 //    // 1: N (user기준에서 orderDetail을 볼 때)
