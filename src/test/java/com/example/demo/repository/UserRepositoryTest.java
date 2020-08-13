@@ -32,6 +32,16 @@ public class UserRepositoryTest extends DemoApplicationTests {
 //        LocalDateTime createdAt = LocalDateTime.now();
 //        String createdBy = "AdminServer";
 
+//        User user = new User(account, password, status, email, phoneNumber, registeredAt, .. )
+/*        User u =User.builder()
+                .account(account)
+                .password(password)
+                .status(status)
+                .email(email)
+                .phoneNumber(phoneNumber)
+                .registeredAt(registeredAt)
+                .build();*/
+
         User user = new User();
         user.setAccount(account);
         user.setPassword(password);
@@ -50,6 +60,10 @@ public class UserRepositoryTest extends DemoApplicationTests {
     @Transactional
     public void read(){
         User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1111-2222");
+
+        // chain 패턴
+//        user.setEmail("").setPhoneNumber("");
+//        User u = new User().setAccount("").setEmail("").setPassword("");
 
         if(user!=null){
             user.getOrderGroupList().stream().forEach(orderGroup -> {
