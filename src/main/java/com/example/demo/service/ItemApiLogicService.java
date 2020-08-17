@@ -19,6 +19,7 @@ public class ItemApiLogicService implements CrudInterface<ItemApiRequest, ItemAp
 
     @Autowired
     private PartnerRepository partnerRepository;
+
     @Autowired
     private ItemRepository itemRepository;
 
