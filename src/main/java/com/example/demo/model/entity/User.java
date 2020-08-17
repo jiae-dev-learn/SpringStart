@@ -1,5 +1,6 @@
 package com.example.demo.model.entity;
 
+import com.example.demo.model.enumclass.UserStatus;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.apache.tomcat.jni.Local;
@@ -26,19 +27,31 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String account;
+
     private String password;
-    private String status;
+
+    @Enumerated(EnumType.STRING)
+    private UserStatus status; // REGISTERED / UNREGISTERED / WAITING
+
     private String email;
+
     private String phoneNumber;
+
     private LocalDateTime registeredAt;
+
     private LocalDateTime unregisteredAt;
+
     @CreatedDate
     private LocalDateTime createdAt;
+
     @CreatedBy
     private String createdBy;
+
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
     @LastModifiedBy
     private String updatedBy;
 //
